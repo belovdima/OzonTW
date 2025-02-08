@@ -1,7 +1,41 @@
+/* Обнуление  стилей */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html,
 body {
-    background-color: black;
+    line-height: 1.4;
+    color: black;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+*:focus {
+    outline: none;
 }
 
 .progress {
@@ -18,6 +52,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 40px;
 }
 
 .progress__track {
@@ -55,11 +90,13 @@ body {
 }
 
 .progress__input-field {
-    width: 42px;
-    height: 28px;
+    width: 50px;
+    height: 34px;
     margin-right: 8px;
     border: 1px solid black;
     border-radius: 34px;
+    text-align: center;
+    font-size: 18px;
 }
 
 /* Свитчи */
@@ -132,4 +169,21 @@ input[type="number"]:hover,
 input[type="number"]:focus {
     -moz-appearance: textfield;
     appearance: none;
+}
+
+.progress--horizontal {
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.progress--horizontal .progress__circle {
+    margin-right: 40px;
+    margin-bottom: 0;
+}
+
+.progress--horizontal .progress__controls {
+    align-items: flex-start;
 }

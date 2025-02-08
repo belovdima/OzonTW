@@ -10,3 +10,21 @@ function setProgress(percent) {
 }
 
 setProgress(25);
+
+function handleOrientationChange() {
+    const progress = document.querySelector(".progress");
+
+    if (window.matchMedia("(orientation: landscape)").matches) {
+        progress.classList.add("progress--horizontal");
+        progress.classList.remove("progress--vertical");
+    } else {
+        progress.classList.add("progress--vertical");
+        progress.classList.remove("progress--horizontal");
+    }
+}
+
+handleOrientationChange();
+
+window
+    .matchMedia("(orientation: landscape)")
+    .addEventListener("change", handleOrientationChange);
