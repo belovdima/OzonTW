@@ -187,3 +187,16 @@ input[type="number"]:focus {
     justify-content: space-between;
     height: 135px;
 }
+
+@keyframes rotate-animation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.progress__circle--animated {
+    animation: rotate-animation 3s linear infinite;
+}

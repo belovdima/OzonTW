@@ -25,6 +25,20 @@ inputField.addEventListener("input", function () {
     setProgress(parseInt(inputField.value));
 });
 
+const animateToggle = document.querySelector(
+    ".progress__switch--animate .switch__input"
+);
+const progressCircleContainer = document.querySelector(".progress__circle");
+
+// Функция для включения/выключения анимации
+animateToggle.addEventListener("change", function () {
+    if (animateToggle.checked) {
+        progressCircleContainer.classList.add("progress__circle--animated");
+    } else {
+        progressCircleContainer.classList.remove("progress__circle--animated");
+    }
+});
+
 // Функция отображения компонентов при повороте экрана
 function handleOrientationChange() {
     const progress = document.querySelector(".progress");
