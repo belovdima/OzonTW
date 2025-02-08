@@ -38,12 +38,6 @@ function setProgress(percent) {
 // Устанавливаем начальное значение 0
 setProgress(0);
 
-// Изменение значения в инпуте
-inputField.addEventListener("input", function () {
-    setProgress(parseInt(inputField.value));
-});
-
-//Ввод только цифр и одной точки
 inputField.addEventListener("input", function () {
     // Разрешаем ввод только цифр, запятой и точки
     this.value = this.value.replace(/[^0-9.,]/g, "");
@@ -55,6 +49,8 @@ inputField.addEventListener("input", function () {
     if ((this.value.match(/\./g) || []).length > 1) {
         this.value = this.value.slice(0, this.value.lastIndexOf("."));
     }
+    // Изменение значения в инпуте
+    setProgress(parseFloat(inputField.value));
 });
 
 // Включение/выключение анимации
