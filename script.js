@@ -9,7 +9,7 @@ function setProgress(percent) {
         circumference - circumference * (percent / 100);
 }
 
-setProgress(25);
+setProgress(50);
 
 function handleOrientationChange() {
     const progress = document.querySelector(".progress");

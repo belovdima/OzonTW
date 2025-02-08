@@ -38,6 +38,8 @@ button {
     outline: none;
 }
 
+/* Добавление стилей  */
+
 .progress {
     display: flex;
     align-items: center;
@@ -47,7 +49,6 @@ button {
     background-color: white;
 }
 
-/* Круг прогресса */
 .progress__circle {
     display: flex;
     align-items: center;
@@ -65,21 +66,19 @@ button {
     transform: rotate(-90deg);
     transform-origin: center;
     stroke: #005bff;
-    stroke-dasharray: 628.318530718; /* 2 * PI * 100 */
-    stroke-dashoffset: 50; /* dashOff = dashArr - (dashArr * %/100) */
     stroke-width: 10px;
     fill: none;
 }
 
-/* Контейнер для управления */
 .progress__controls {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 150px;
+    justify-content: space-between;
+    width: 135px;
+    height: 135px;
 }
 
-/* Поле ввода */
 .progress__input {
     display: flex;
     align-items: center;
@@ -99,12 +98,10 @@ button {
     font-size: 18px;
 }
 
-/* Свитчи */
 .progress__switch {
     display: flex;
     align-items: center;
     width: 100%;
-    margin-top: 10px;
     gap: 10px;
 }
 
@@ -112,7 +109,6 @@ button {
     margin-left: 8px;
 }
 
-/* Стили для переключателя */
 .switch {
     position: relative;
     display: inline-block;
@@ -171,10 +167,11 @@ input[type="number"]:focus {
     appearance: none;
 }
 
+/* Горизонтально */
 .progress--horizontal {
     align-items: center;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100vw;
     height: 100vh;
 }
@@ -186,4 +183,6 @@ input[type="number"]:focus {
 
 .progress--horizontal .progress__controls {
     align-items: flex-start;
+    justify-content: space-between;
+    height: 135px;
 }
