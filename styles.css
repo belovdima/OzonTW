@@ -54,6 +54,7 @@ button {
     align-items: center;
     justify-content: center;
     margin-bottom: 40px;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .progress__track {
@@ -188,6 +189,8 @@ input[type="number"]:focus {
     height: 135px;
 }
 
+/* Анимация  */
+
 @keyframes rotate-animation {
     from {
         transform: rotate(0deg);
@@ -199,4 +202,11 @@ input[type="number"]:focus {
 
 .progress__circle--animated {
     animation: rotate-animation 3s linear infinite;
+}
+
+/* Скрытие элемента  */
+
+.progress__circle--hidden {
+    visibility: hidden;
+    opacity: 0;
 }

@@ -4,6 +4,8 @@ let circumference = radius * 2 * Math.PI;
 
 progressCircle.style.strokeDasharray = circumference;
 
+const inputField = document.querySelector(".progress__input-field"); // Получаем значение инпута
+
 // Функция установки прогресса с ограничением 0-100
 function setProgress(percent) {
     if (percent > 100) {
@@ -18,7 +20,7 @@ function setProgress(percent) {
         circumference - circumference * (percent / 100);
 }
 
-const inputField = document.querySelector(".progress__input-field"); // Получаем значение инпута
+setProgress(0);
 
 // Слушатель на изменение инпута
 inputField.addEventListener("input", function () {
@@ -36,6 +38,18 @@ animateToggle.addEventListener("change", function () {
         progressCircleContainer.classList.add("progress__circle--animated");
     } else {
         progressCircleContainer.classList.remove("progress__circle--animated");
+    }
+});
+
+const hideToggle = document.querySelector(
+    ".progress__switch--hide .switch__input"
+);
+
+hideToggle.addEventListener("change", function () {
+    if (hideToggle.checked) {
+        progressCircleContainer.classList.add("progress__circle--hidden");
+    } else {
+        progressCircleContainer.classList.remove("progress__circle--hidden");
     }
 });
 
