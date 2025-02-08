@@ -4,7 +4,7 @@ const radius = progressCircle.r.baseVal.value;
 const circumference = radius * 2 * Math.PI;
 progressCircle.style.strokeDasharray = circumference;
 
-// Контейнер с кругом
+// Круг
 const progressCircleContainer = document.querySelector(".progress__circle");
 
 // Инпут для изменения прогресса
@@ -18,12 +18,16 @@ const hideToggle = document.querySelector(
     ".progress__switch--hide .switch__input"
 );
 
-// Контейнер прогресса (для изменения ориентации)
+//Для изменения ориентации
 const progressContainer = document.querySelector(".progress");
 
 //Функция установки прогресса
 function setProgress(percent) {
-    if (percent > 100) {
+    // Если NaN или пусто, то ставим 0
+    if (isNaN(percent) || percent === "") {
+        percent = 0;
+        inputField.value = "";
+    } else if (percent > 100) {
         percent = 100;
         inputField.value = 100;
     } else if (percent < 0 || inputField.value === "") {
@@ -35,7 +39,7 @@ function setProgress(percent) {
         circumference - circumference * (percent / 100);
 }
 
-// Устанавливаем начальное значение 0
+// Устанавливаем начальное значение 0 по дефолту
 setProgress(0);
 
 inputField.addEventListener("input", function () {
@@ -50,7 +54,8 @@ inputField.addEventListener("input", function () {
         this.value = this.value.slice(0, this.value.lastIndexOf("."));
     }
     // Изменение значения в инпуте
-    setProgress(parseFloat(inputField.value));
+    let progressValue = parseFloat(this.value);
+    setProgress(isNaN(progressValue) ? 0 : progressValue);
 });
 
 // Включение/выключение анимации
