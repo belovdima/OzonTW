@@ -1,12 +1,27 @@
-let progressCircle = document.querySelector(".progress__bar");
-let radius = progressCircle.r.baseVal.value;
-let circumference = radius * 2 * Math.PI;
-
+// Круг прогресса
+const progressCircle = document.querySelector(".progress__bar");
+const radius = progressCircle.r.baseVal.value;
+const circumference = radius * 2 * Math.PI;
 progressCircle.style.strokeDasharray = circumference;
 
-const inputField = document.querySelector(".progress__input-field"); // Получаем значение инпута
+// Контейнер с кругом
+const progressCircleContainer = document.querySelector(".progress__circle");
 
-// Функция установки прогресса с ограничением 0-100
+// Инпут для изменения прогресса
+const inputField = document.querySelector(".progress__input-field");
+
+// Переключатели
+const animateToggle = document.querySelector(
+    ".progress__switch--animate .switch__input"
+);
+const hideToggle = document.querySelector(
+    ".progress__switch--hide .switch__input"
+);
+
+// Контейнер прогресса (для изменения ориентации)
+const progressContainer = document.querySelector(".progress");
+
+//Функция установки прогресса
 function setProgress(percent) {
     if (percent > 100) {
         percent = 100;
@@ -20,54 +35,45 @@ function setProgress(percent) {
         circumference - circumference * (percent / 100);
 }
 
+// Устанавливаем начальное значение 0
 setProgress(0);
 
-// Слушатель на изменение инпута
+// Изменение значения в инпуте
 inputField.addEventListener("input", function () {
     setProgress(parseInt(inputField.value));
 });
 
-const animateToggle = document.querySelector(
-    ".progress__switch--animate .switch__input"
-);
-const progressCircleContainer = document.querySelector(".progress__circle");
-
-// Функция для включения/выключения анимации
+// Включение/выключение анимации
 animateToggle.addEventListener("change", function () {
-    if (animateToggle.checked) {
-        progressCircleContainer.classList.add("progress__circle--animated");
-    } else {
-        progressCircleContainer.classList.remove("progress__circle--animated");
-    }
+    progressCircleContainer.classList.toggle(
+        "progress__circle--animated",
+        animateToggle.checked
+    );
 });
 
-const hideToggle = document.querySelector(
-    ".progress__switch--hide .switch__input"
-);
-
+// Скрытие/показ круга
 hideToggle.addEventListener("change", function () {
-    if (hideToggle.checked) {
-        progressCircleContainer.classList.add("progress__circle--hidden");
-    } else {
-        progressCircleContainer.classList.remove("progress__circle--hidden");
-    }
+    progressCircleContainer.classList.toggle(
+        "progress__circle--hidden",
+        hideToggle.checked
+    );
 });
 
-// Функция отображения компонентов при повороте экрана
+//Обработка поворота экрана
 function handleOrientationChange() {
-    const progress = document.querySelector(".progress");
-
     if (window.matchMedia("(orientation: landscape)").matches) {
-        progress.classList.add("progress--horizontal");
-        progress.classList.remove("progress--vertical");
+        progressContainer.classList.add("progress--horizontal");
+        progressContainer.classList.remove("progress--vertical");
     } else {
-        progress.classList.add("progress--vertical");
-        progress.classList.remove("progress--horizontal");
+        progressContainer.classList.add("progress--vertical");
+        progressContainer.classList.remove("progress--horizontal");
     }
 }
 
+// Запускаем проверку ориентации при загрузке
 handleOrientationChange();
 
+// Слушатель события на изменение ориентации
 window
     .matchMedia("(orientation: landscape)")
     .addEventListener("change", handleOrientationChange);
