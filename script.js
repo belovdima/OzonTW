@@ -43,6 +43,14 @@ inputField.addEventListener("input", function () {
     setProgress(parseInt(inputField.value));
 });
 
+//Ввод только цифр и одной запятой
+inputField.addEventListener("input", function () {
+    this.value = this.value.replace(/[^0-9,]/g, "");
+    if ((this.value.match(/,/g) || []).length > 1) {
+        this.value = this.value.slice(0, this.value.lastIndexOf(","));
+    }
+});
+
 // Включение/выключение анимации
 animateToggle.addEventListener("change", function () {
     progressCircleContainer.classList.toggle(
