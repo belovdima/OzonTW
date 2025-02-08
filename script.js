@@ -43,11 +43,17 @@ inputField.addEventListener("input", function () {
     setProgress(parseInt(inputField.value));
 });
 
-//Ввод только цифр и одной запятой
+//Ввод только цифр и одной точки
 inputField.addEventListener("input", function () {
-    this.value = this.value.replace(/[^0-9,]/g, "");
-    if ((this.value.match(/,/g) || []).length > 1) {
-        this.value = this.value.slice(0, this.value.lastIndexOf(","));
+    // Разрешаем ввод только цифр, запятой и точки
+    this.value = this.value.replace(/[^0-9.,]/g, "");
+
+    // Заменяем запятую на точку
+    this.value = this.value.replace(",", ".");
+
+    // Разрешаем только одну точку
+    if ((this.value.match(/\./g) || []).length > 1) {
+        this.value = this.value.slice(0, this.value.lastIndexOf("."));
     }
 });
 
