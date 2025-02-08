@@ -1,12 +1,12 @@
-let progressCircle = document.querySelector(".progress");
+let progressCircle = document.querySelector(".progress__bar");
 let radius = progressCircle.r.baseVal.value;
-let circumferense = radius * 2 * Math.PI;
+let circumference = radius * 2 * Math.PI;
 
-progressCircle.style.strokeDasharray = circumferense;
+progressCircle.style.strokeDasharray = circumference;
 
 function setProgress(percent) {
     progressCircle.style.strokeDashoffset =
-        circumferense - circumferense * (percent / 100);
+        circumference - circumference * (percent / 100);
 }
 
-setProgress(50);
+setProgress(25);
