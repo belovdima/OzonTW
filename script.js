@@ -92,3 +92,32 @@ handleOrientationChange();
 window
     .matchMedia("(orientation: landscape)")
     .addEventListener("change", handleOrientationChange);
+
+//API для управления
+const ProgressAPI = {
+    setValue(value) {
+        let progressValue = parseFloat(value);
+
+        if (isNaN(progressValue) || progressValue < 0) progressValue = 0;
+        if (progressValue > 100) progressValue = 100;
+
+        inputField.value = progressValue;
+        setProgress(progressValue);
+    },
+
+    setAnimated(state) {
+        animateToggle.checked = state;
+        progressCircleContainer.classList.toggle(
+            "progress__circle--animated",
+            state
+        );
+    },
+
+    setHidden(state) {
+        hideToggle.checked = state;
+        progressCircleContainer.classList.toggle(
+            "progress__circle--hidden",
+            state
+        );
+    },
+};
